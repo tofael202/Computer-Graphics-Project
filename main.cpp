@@ -170,11 +170,6 @@ void drawLine()
         glVertex3f(200,270,0);
         glVertex3f(200,300,0);
 
-
-
-
-
-
     }
     glEnd();
 }
@@ -238,7 +233,6 @@ void random_generator(){
                     if( m <= 400 && m >= 300)
                       return random_generator();
                 }
-
                 if(n <=400 && n >=300 )
                 {
                     if( m <= 301 && m >= 300)
@@ -259,16 +253,11 @@ void random_generator(){
                     if( m <= 300 && m >= 270)
                       return random_generator();
                 }
-
-
               else
               {
                   food_x1=n;
                   food_y1=m;
               }
-
-
-
 }
 void drawFood1()
 {   random_generator();
@@ -300,8 +289,20 @@ void checkFoodEaten()
         isFoodEaten = 1;
         score =  score + 1;
         snakeLength = snakeLength + 1;
-        strcpy(snakeParts[snakeLength-1].direction, "right");
-        snakeParts[snakeLength-1].x = snakeParts[snakeLength-2].x - inc;
+
+        if(strcmp(currentDirection, "up") == 0 && strcmp(currentDirection, "down") == 0 && strcmp(currentDirection, "left") == 0 ){
+                strcpy(snakeParts[snakeLength-1].direction, "right");
+		    }
+		if(strcmp(currentDirection, "up") == 0 && strcmp(currentDirection, "down") == 0 && strcmp(currentDirection, "right") == 0){
+                strcpy(snakeParts[snakeLength-1].direction, "left");
+		    }
+		if(strcmp(currentDirection, "left") == 0 && strcmp(currentDirection, "right") == 0 && strcmp(currentDirection, "up") == 0 ){
+                strcpy(snakeParts[snakeLength-1].direction, "down");
+		    }
+		 if(strcmp(currentDirection, "left") == 0 && strcmp(currentDirection, "right") == 0 && strcmp(currentDirection, "down") == 0 ){
+                strcpy(snakeParts[snakeLength-1].direction, "up");
+		    }
+        snakeParts[snakeLength-1].x = snakeParts[snakeLength-2].x ;
         snakeParts[snakeLength-1].y = snakeParts[snakeLength-2].y;
         snakeParts[snakeLength-1].r = 0;
         snakeParts[snakeLength-1].g = 0;
